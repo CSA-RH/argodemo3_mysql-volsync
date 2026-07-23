@@ -1,0 +1,15 @@
+---
+apiVersion: volsync.backube/v1alpha1
+kind: ReplicationDestination
+metadata:
+  name: mysql-data-dest
+  namespace: mysql-volsync
+spec:
+  rsyncTLS:
+    serviceType: LoadBalancer
+    copyMethod: Snapshot
+    capacity: 2Gi
+    accessModes:
+      - ReadWriteOnce
+    storageClassName: gp3-csi
+    volumeSnapshotClassName: csi-aws-vsc

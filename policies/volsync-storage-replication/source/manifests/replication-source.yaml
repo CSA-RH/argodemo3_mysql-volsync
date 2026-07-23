@@ -1,0 +1,15 @@
+---
+apiVersion: volsync.backube/v1alpha1
+kind: ReplicationSource
+metadata:
+  name: mysql-data-source
+  namespace: mysql-volsync
+spec:
+  sourcePVC: mysql-pv-claim
+  trigger:
+    schedule: "*/3 * * * *"
+  rsyncTLS:
+    keySecret: REPLACE_WITH_DEST_KEY_SECRET
+    address: REPLACE_WITH_DEST_ADDRESS
+    copyMethod: Snapshot
+    storageClassName: gp3-csi

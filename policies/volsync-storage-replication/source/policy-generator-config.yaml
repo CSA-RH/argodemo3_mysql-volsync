@@ -1,0 +1,27 @@
+---
+apiVersion: policy.open-cluster-management.io/v1
+kind: PolicyGenerator
+metadata:
+  name: gen-volsync-source
+policyDefaults:
+  namespace: acm-policies
+  remediationAction: enforce
+  consolidateManifests: false
+  severity: medium
+  placement:
+    placementName: volsync-source-placement
+  categories:
+    - "CM Configuration Management"
+  controls:
+    - "CM-2 Baseline Configuration"
+  standards:
+    - "NIST SP 800-53"
+
+policies:
+  - name: volsync-mysql-replication-source
+    description: "Creates the mysql-pv-claim PVC and VolSync ReplicationSource on the source cluster"
+    manifests:
+      - path: manifests/pvc.yaml
+        name: mysql-pv-claim
+      - path: manifests/replication-source.yaml
+        name: mysql-data-replication-source

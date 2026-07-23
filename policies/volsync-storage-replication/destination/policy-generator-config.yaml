@@ -1,0 +1,27 @@
+---
+apiVersion: policy.open-cluster-management.io/v1
+kind: PolicyGenerator
+metadata:
+  name: gen-volsync-destination
+policyDefaults:
+  namespace: acm-policies
+  remediationAction: enforce
+  consolidateManifests: false
+  severity: medium
+  placement:
+    placementName: volsync-destination-placement
+  categories:
+    - "CM Configuration Management"
+  controls:
+    - "CM-2 Baseline Configuration"
+  standards:
+    - "NIST SP 800-53"
+
+policies:
+  - name: volsync-mysql-replication-destination
+    description: "Ensures the mysql-volsync namespace and VolSync ReplicationDestination exist on the destination cluster"
+    manifests:
+      - path: manifests/namespace.yaml
+        name: mysql-volsync-namespace
+      - path: manifests/replication-destination.yaml
+        name: mysql-data-replication-destination
