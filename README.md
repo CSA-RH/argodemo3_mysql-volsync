@@ -580,7 +580,7 @@ oc --kubeconfig=$cluster1_KUBECONFIG -n mysql-volsync get pods
 
 Delete ACM policies and the ApplicationSet **before** deleting the
 namespaces, otherwise the enforce policies will recreate the
-VolSync objects.
+VolSync objects
 
 **On hub (first):**
 
